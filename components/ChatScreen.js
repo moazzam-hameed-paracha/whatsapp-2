@@ -52,6 +52,7 @@ const ChatScreen = ({ chat, messages }) => {
                 />
             ))
         }
+        scrollToBottom();
     }
 
     const sendMessage = (e) => {
