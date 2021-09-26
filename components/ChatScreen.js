@@ -52,7 +52,6 @@ const ChatScreen = ({ chat, messages }) => {
                 />
             ))
         }
-        scrollToBottom();
     }
 
     const sendMessage = (e) => {
@@ -89,9 +88,9 @@ const ChatScreen = ({ chat, messages }) => {
                     <h3>{recipientEmail}</h3>
                     {recipientSnapshot ? (
                         <p>Last active: {' '}
-                        {recipient?.lastScreen?.toDate() ? (
-                            <TimeAgo datetime={recipient?.lastScreen?.toDate()} />
-                        ) : "Unavaliable"}
+                            {recipient?.lastScreen?.toDate() ? (
+                                <TimeAgo datetime={recipient?.lastScreen?.toDate()} />
+                            ) : "Unavaliable"}
                         </p>
                     ) : (
                         <p>loading last active</p>
@@ -109,6 +108,7 @@ const ChatScreen = ({ chat, messages }) => {
 
             <MessageContainer>
                 {showMessages()}
+                {scrollToBottom()}
                 <EndOfMessage ref={endOfMessage} />
             </MessageContainer>
 
