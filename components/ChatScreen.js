@@ -3,7 +3,7 @@ import { InsertEmoticon, Mic } from "@material-ui/icons";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useRouter } from "next/dist/client/router";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
 import styled from "styled-components";
@@ -52,7 +52,6 @@ const ChatScreen = ({ chat, messages }) => {
                 />
             ))
         }
-        scrollToBottom();
     }
 
     const sendMessage = (e) => {
@@ -72,6 +71,10 @@ const ChatScreen = ({ chat, messages }) => {
         setInput("");
         scrollToBottom();
     }
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messagesSnapShot])
 
     const recipient = recipientSnapshot?.docs?.[0]?.data();
     const recipientEmail = getRecipientEmail(chat.users, user);
